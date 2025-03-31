@@ -1,0 +1,58 @@
+
+lake_map = ['   4210000  ',
+            '  543210000 ',
+            '  433210000 ',
+            '   2110000  ']
+
+def print_lake_report(map):
+
+    intlist = []
+    ultra = 0
+    micro = 0
+    oligo = 0
+    meso = 0
+    eutro = 0
+    super = 0
+    hyper = 0
+
+    listlength = len(map) # Set variable "listlength" to the length of the list "lake_map"
+
+    for i in range(listlength):  
+        numstring = list(map[i])
+        for i in range(len(numstring)):
+            intlist.insert(i,numstring[i])
+
+    for i in range(len(intlist)):
+        if intlist[i] == "0":
+            ultra += 1
+        elif intlist[i] == "1":
+            micro += 1
+        elif intlist[i] == "2":
+            oligo += 1
+        elif intlist[i] == "3":
+            meso += 1
+        elif intlist[i] == "4":
+            eutro += 1
+        elif intlist[i] == "5":
+            super += 1
+        elif intlist[i] == "6":
+            hyper += 1
+
+    totalarea = hyper+super+eutro+meso+oligo+micro+ultra
+
+    s = f"""
+    Area Summary
+    ---------------------------
+    Hypertrophic        {hyper:2} sq m
+    Supertrophic        {super:2} sq m
+    Eutrophic           {eutro:2} sq m
+    Mesotrophic         {meso:2} sq m
+    Oligotrophic        {oligo:2} sq m
+    Microtrophic        {micro:2} sq m
+    Ultra-microtrophic  {ultra:2} sq m
+    ---------------------------
+    Total Lake Area     {totalarea:2} sq m
+    """
+    print(s)
+
+print_lake_report(lake_map)
