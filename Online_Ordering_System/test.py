@@ -1,7 +1,8 @@
 from flask import Flask, g
 import sqlite3
+import os
 
-DATABASE = 'database.db'
+DATABASE = os.path.join(os.path.dirname(__file__), 'database.db')
 
 #Initialize App
 app = Flask(__name__)
@@ -18,15 +19,19 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
+
+
 @app.route('/')
 def home():
     #Home Page
 
-    db = get_db()
-    cursor = db.cursor()
     sql = 'SELECT * FROM item;'
-    cursor.execute(sql)
-    results = cursor.fetchall()
+    results = query_db(sql)
     return str(results)
 
 if __name__ == "__main__":
