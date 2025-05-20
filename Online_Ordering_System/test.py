@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import *
 import sqlite3
 import os
 
@@ -29,10 +29,15 @@ def query_db(query, args=(), one=False):
 @app.route('/')
 def home():
     #Home Page
+    return render_template("index.html")
 
-    sql = 'SELECT * FROM item;'
-    results = query_db(sql)
-    return str(results)
+    #sql = 'SELECT * FROM item;'
+    #results = query_db(sql)
+    #return str(results)
+
+@app.route('/api/getmenu')
+def menu():
+    return "hello"
 
 if __name__ == "__main__":
     app.run(debug=True)
