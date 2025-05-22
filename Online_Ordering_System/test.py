@@ -13,31 +13,19 @@ def get_db():
         db = g._database = sqlite3.connect(DATABASE)
     return db
 
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
-
-def query_db(query, args=(), one=False):
-    cur = get_db().execute(query, args)
-    rv = cur.fetchall()
+def query_db(query):
+    cur = get_db().execute(query)
+    result = cur.fetchall()
     cur.close()
-    return (rv[0] if rv else None) if one else rv
+    return result
 
-
-@app.route('/')
-def home():
-    #Home Page
-    return render_template("index.html")
-
-    #sql = 'SELECT * FROM item;'
-    #results = query_db(sql)
-    #return str(results)
-
-@app.route('/api/getmenu')
+@app.route('/menu')
 def menu():
-    return "hello"
+    #Menu Page
+    items = query_db('SELECT * FROM item')
+    return render_template("index.html", items=items)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+    

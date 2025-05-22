@@ -2,10 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menu</title>
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            width: 200px;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .card h3 {
+            margin: 8px 0 4px;
+        }
+        .card p {
+            margin: 4px 0;
+        }
+    </style>
 </head>
 <body>
-    <a href="/menu">yope</a>
+    <h1>Menu</h1>
+    <div class="card-container">
+        {% for item in items %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='' ~ item[2] ~ '.jpeg') }}" alt="{{ item[1] }}">
+            <h3>{{ item[2] }}</h3> <!-- Name -->
+            <p><strong>${{ item[3] }}</strong></p> <!-- Price -->
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
