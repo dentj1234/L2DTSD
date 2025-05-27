@@ -14,7 +14,6 @@
             <img src="{{ url_for('static', filename='' ~ item[2] ~ '.jpeg') }}" alt="{{ item[1] }}">
             <h3>{{ item[2] }}</h3> <!-- Name -->
             <p><strong>${{ item[3] }}</strong></p> <!-- Price -->
-            <button onclick="addToCart({{ item[0] }})">Add to Cart</button>
         </div>
         {% endfor %}
     </div>
