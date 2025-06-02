@@ -45,7 +45,21 @@ def add_to_cart():
 
 @app.route('/cart')
 def cart():
-    pass
+    cart_items_ids = session.get('cart', [])
+    if not cart_items_ids:
+        return "Cart is Empty."
+    
+    id_list = ','.join(str(item_id) for item_id in cart_items_ids)
+
+    query = f"SELECT * FROM item WHERE item_id IN ({id_list})"
+    items = query_db(query)
+    return render_template("cart.html", items=items)
+
+@app.route('/clear_cart', methods=['POST'])
+def clear_cart():
+    session['cart'] = []
+    session.modified = True
+    return jsonify({'success': True})
 
 if __name__ == "__main__":
     app.run(debug=True)

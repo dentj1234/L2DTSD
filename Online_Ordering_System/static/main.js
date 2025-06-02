@@ -16,4 +16,5 @@ function addToCart(itemId) {
             console.log("Failed to add item");
         }
     }); 
-    }
+}
+
