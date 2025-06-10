@@ -35,13 +35,15 @@ def menu():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    if not request.json or not request.json['item_id']:
+        return jsonify({'success': False})
     item_id = int(request.json['item_id'])  # Using JSON
     if 'cart' not in session:
         session['cart'] = []
     if item_id not in session['cart']:
         session['cart'].append(item_id)
         session.modified = True
-    return jsonify({'success': True, 'cart_count': len(session['cart'])})
+    return jsonify({'success': True, 'cart_count': len(session['cart']), 'item_id': item_id})
 
 @app.route('/cart')
 def cart():
