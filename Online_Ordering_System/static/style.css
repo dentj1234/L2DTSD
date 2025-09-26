@@ -1,3 +1,21 @@
+nav {
+    background-color: red;
+}
+
+nav a {
+    display: inline-block;       /* makes them button-like but side-by-side */
+    color: white;                /* text color */
+    padding: 20px 25px;          /* spacing inside button */
+    margin-right: 10px;          /* space between buttons */
+    text-decoration: none;       /* remove underline */
+    border-radius: 4px;          /* optional rounded corners */
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: darkred;      /* lighter background when hovering */
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -20,3 +38,85 @@
 .card p {
     margin: 4px 0;
 }
+
+.cart-container {
+    padding: 2rem;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.item-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ccc; /* light grey line */
+}
+
+.item-info {
+    flex: 1;
+    margin-top: 0.5rem;
+}
+
+.item-description {
+    flex: 3;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between number and buttons */
+}
+
+.item-quantity-buttons {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.item-card img {
+    max-width: 10%;
+    height: auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    text-decoration: none;
+    background: #007BFF;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background: #0056b3;
+}
+
+#clear-cart-btn {
+    margin-left: 1rem; 
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+#clear-cart-btn:hover {
+    background: darkred
+}   
+
+.remove-item-btn {
+    margin-left: 1rem; 
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.remove-item-btn:hover {
+    background: darkred
+}   

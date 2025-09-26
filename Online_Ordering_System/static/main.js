@@ -13,8 +13,7 @@ function addToCart(itemId) {
     .then(data => {
         if (data.success) {
             console.log("Item added. Cart count:", data.cart_count);
-            showPopup("✅ Item added to cart!");
-            // You can update a cart count on the page here if you want
+            showPopup("Item added to cart!");
         } 
         else {
             console.log("Failed to add item");
@@ -51,4 +50,15 @@ function showPopup(message) {
     setTimeout(() => {
         popup.remove();
     }, 2000);
+}
+
+function recalcTotal() {
+  let total = 0;
+  document.querySelectorAll('.item-card').forEach(card => {
+    const price = parseFloat(card.dataset.price);
+    const qty = parseInt(card.querySelector('.qty-display').textContent) || 0;
+    total += price * qty;
+  });
+  // Update total cost display
+  document.getElementById('total-cost').textContent = total.toFixed(2);
 }
