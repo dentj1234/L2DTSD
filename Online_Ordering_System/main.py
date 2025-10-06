@@ -22,6 +22,11 @@ def query_db(query):
     cur.close()
     return result
 
+@app.route('/')
+def redir():
+    return redirect('/home')
+
+
 # Menu Page Route
 @app.route('/menu')
 def menu():
